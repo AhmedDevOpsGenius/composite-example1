@@ -13,10 +13,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Call Build & Push Image Action from composite-example repository
+      - name: Call Build & Push Image Action 
         uses: AhmedDevOpsGenius/composite-example/.github/actions@main
         with:
-          path: ./.github/actions
+          path: ./Actions/Build-Push-Image
           environment: 'production'
           dockerfile_path: './path/to/Dockerfile'
           docker_context: './path/to/docker/context'
