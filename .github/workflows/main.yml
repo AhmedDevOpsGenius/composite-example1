@@ -1,0 +1,30 @@
+name: Main Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_push_image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Call Build & Push Image Action from composite-example repository
+        uses: ./composite-example/.github/actions
+        with:
+          path: action.yml
+          environment: 'production'
+          dockerfile_path: './path/to/Dockerfile'
+          docker_context: './path/to/docker/context'
+          image_name: 'myimage'
+          image_tag: 'latest'
+          acr_build_platform: 'linux/amd64'
+          build_configuration: 'Release'
+          build_version_prefix: '1.0.0'
+          build_version: '1.0.0-alpha.1+build123'
+          build_assembly_file_version: '1.0.0.123'
+          build_full_version: '1.0.0-alpha.1+build123+additional_info'
